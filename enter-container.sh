@@ -23,15 +23,15 @@ xhost +local:docker > /dev/null
 # Store the arguments to `docker run` in an array so we can add comments
 # explaining what the arguments mean. https://stackoverflow.com/a/9522766
 args=(
-    # Tell Docker to delete the container immediately after we exit out of it.
-    --rm
+    # Automatically remove the container when it exits.
+    # --rm
 
     --name "$CONTAINER_NAME"
 
     # These flags are needed for interactive shell sessions.
     --interactive
     --tty
-    --env TERM=xterm-256color
+    # --env TERM=xterm-256color
 
     # Setting the network option to "host" allows applications in the Docker
     # container (e.g., ROS) to access the network interfaces of the host system
@@ -82,3 +82,5 @@ else
     #   container, what is the correct behavior after the image is rebuilt?
     docker exec --interactive --tty "$CONTAINER_NAME" "$SHELL"
 fi
+
+# TODO: how to inspect a containner is running or just stopped

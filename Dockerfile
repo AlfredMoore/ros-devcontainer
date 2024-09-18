@@ -2,13 +2,13 @@
 FROM osrf/ros:noetic-desktop-full
 
 ARG DEBIAN_FRONTEND=noninteractive
-ENV TZ=America/Detroit
+ENV TZ=America/Chicago
 
 # Install commonly-used development tools.
 RUN apt-get update && apt-get install --yes \
     build-essential \
-    clang-12 \
-    clang-format-12 \
+    # clang-12 \
+    # clang-format-12 \
     cmake \
     g++ \
     gdb \
@@ -18,8 +18,8 @@ RUN apt-get update && apt-get install --yes \
     vim
 
 # Remap clang-12 and clang-format-12 to clang and clang-format, respectively.
-RUN update-alternatives --install /usr/bin/clang clang /usr/bin/clang-12 100
-RUN update-alternatives --install /usr/bin/clang-format clang-format /usr/bin/clang-format-12 100
+# RUN update-alternatives --install /usr/bin/clang clang /usr/bin/clang-12 100
+# RUN update-alternatives --install /usr/bin/clang-format clang-format /usr/bin/clang-format-12 100
 
 # Install commonly-used Python tools.
 RUN apt-get update && apt-get install --yes \
@@ -57,5 +57,7 @@ RUN apt-get update && apt-get install --yes \
     python3.10-distutils \
     python3.10-venv
 
-RUN curl -sSL https://install.python-poetry.org | POETRY_HOME=/usr/local/pypoetry python3.10 -
-RUN ln -s /usr/local/pypoetry/bin/* /usr/local/bin/
+# RUN curl -sSL https://install.python-poetry.org | POETRY_HOME=/usr/local/pypoetry python3.10 -
+# RUN ln -s /usr/local/pypoetry/bin/* /usr/local/bin/
+
+# TODO: set up libfranka
