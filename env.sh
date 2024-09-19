@@ -15,5 +15,5 @@ if [[ -z "$GIT_LABEL" ]]; then
 fi
 
 
-export IMAGE_NAME="hcilab_Franka/ROS:${GIT_LABEL}"
+export IMAGE_NAME="hcilab_Franka/ros:${GIT_LABEL}"
 export CONTAINER_NAME="ROS-${GIT_LABEL}"
