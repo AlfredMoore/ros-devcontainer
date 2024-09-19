@@ -24,7 +24,7 @@ xhost +local:docker > /dev/null
 # explaining what the arguments mean. https://stackoverflow.com/a/9522766
 args=(
     # Automatically remove the container when it exits.
-    # --rm
+    --rm
 
     --name "$CONTAINER_NAME"
 
