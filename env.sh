@@ -16,4 +16,4 @@ fi
 
 
 export IMAGE_NAME="hcilab_franka/ros:${GIT_LABEL}"
-export CONTAINER_NAME="ROS-${GIT_LABEL}"
+export CONTAINER_NAME="ros-${GIT_LABEL}"

@@ -60,4 +60,32 @@ RUN apt-get update && apt-get install --yes \
 # RUN curl -sSL https://install.python-poetry.org | POETRY_HOME=/usr/local/pypoetry python3.10 -
 # RUN ln -s /usr/local/pypoetry/bin/* /usr/local/bin/
 
-# TODO: set up libfranka
+# Install Rust for relaxed-ik
+RUN curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh -s -- -y
+ENV PATH="/root/.cargo/bin:${PATH}"
+
+
+# # Set up realtime kernel, run this outside the docker!!!
+# sudo apt-get install --yes \
+#     build-essential bc curl ca-certificates gnupg2 libssl-dev lsb-release libelf-dev bison flex dwarves zstd libncurses-dev
+
+# sudo apt-get install --yes \
+#     flex bison libncurses-dev debhelper
+
+# # vim linux-*/.config and change 
+
+# curl -SLO https://www.kernel.org/pub/linux/kernel/v6.x/linux-6.8.2.tar.xz
+# curl -SLO https://www.kernel.org/pub/linux/kernel/v6.x/linux-6.8.2.tar.sign
+# curl -SLO https://www.kernel.org/pub/linux/kernel/projects/rt/6.8/patch-6.8.2-rt11.patch.xz
+# curl -SLO https://www.kernel.org/pub/linux/kernel/projects/rt/6.8/patch-6.8.2-rt11.patch.sign
+# # follow the instruction https://frankaemika.github.io/docs/installation_linux.html#setting-up-the-real-time-kernel
+
+# with realtime kernel, set up realtime user group
+RUN addgroup realtime
+RUN usermod -a -G realtime $(whoami)
+RUN echo "@realtime soft rtprio 99" | tee -a /etc/security/limits.conf
+RUN echo "@realtime soft priority 99" | tee -a /etc/security/limits.conf
+RUN echo "@realtime soft memlock 102400" | tee -a /etc/security/limits.conf
+RUN echo "@realtime hard rtprio 99" | tee -a /etc/security/limits.conf
+RUN echo "@realtime hard priority 99" | tee -a /etc/security/limits.conf
+RUN echo "@realtime hard memlock 102400" | tee -a /etc/security/limits.conf
