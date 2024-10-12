@@ -60,9 +60,13 @@ RUN apt-get update && apt-get install --yes \
 # RUN curl -sSL https://install.python-poetry.org | POETRY_HOME=/usr/local/pypoetry python3.10 -
 # RUN ln -s /usr/local/pypoetry/bin/* /usr/local/bin/
 
-# Install Rust for relaxed-ik
+RUN apt-get update && apt-get install ros-noetic-libfranka ros-noetic-franka-ros
+
+# Install Rust and Cargo
+ENV RUSTUP_HOME=/opt/rust
+ENV CARGO_HOME=/opt/cargo
 RUN curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh -s -- -y
-ENV PATH="/root/.cargo/bin:${PATH}"
+ENV PATH="$CARGO_HOME/bin:${PATH}"
 
 
 # # Set up realtime kernel, run this outside the docker!!!
