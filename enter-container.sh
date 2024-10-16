@@ -66,6 +66,10 @@ args=(
     # --gpus all
     # --env NVIDIA_DRIVER_CAPABILITIES="all"
 
+    # real-time kernel privileges and CPU capacities
+    --privileged
+    --cap-add=SYS_NICE
+
     # The Docker image and command we want to run in the container always need
     # to be the last two arguments.
     "$IMAGE_NAME"

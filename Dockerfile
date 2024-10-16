@@ -60,7 +60,9 @@ RUN apt-get update && apt-get install --yes \
 # RUN curl -sSL https://install.python-poetry.org | POETRY_HOME=/usr/local/pypoetry python3.10 -
 # RUN ln -s /usr/local/pypoetry/bin/* /usr/local/bin/
 
-RUN apt-get update && apt-get install ros-noetic-libfranka ros-noetic-franka-ros
+RUN apt-get update && apt-get install ros-noetic-libfranka
+# ros-noetic-franka-ros is not valid in docker(why?)
+# RUN apt install ros-noetic-franka-ros
 
 # Install Rust and Cargo
 ENV RUSTUP_HOME=/opt/rust
