@@ -60,7 +60,10 @@ ENV RUSTUP_HOME=/opt/rust
 ENV CARGO_HOME=/opt/cargo
 RUN curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh -s -- -y
 ENV PATH="$CARGO_HOME/bin:${PATH}"
-RUN chown -R $(whoami):$(whoami) $CARGO_HOME
+# RUN chown -R $(whoami):$(whoami) $CARGO_HOME
+
+# Install ranged-IK dependencies
+RUN pip3 install readchar PyYaml
 
 ####################################################################################
 ##- Set up REALTIME KERNEL, run these outside the docker!!!
