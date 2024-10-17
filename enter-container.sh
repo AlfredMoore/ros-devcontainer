@@ -6,7 +6,6 @@ set -o nounset
 
 source ./env.sh
 
-
 # Check whether the Docker image is missing. `docker inspect` will exit with a
 # non-zero code if the image does not exist.
 if ! docker inspect "$IMAGE_NAME" &> /dev/null ; then
@@ -45,6 +44,7 @@ args=(
     # terminal is tied to a shell session in this Docker container or a shell
     # session on the host.
     --hostname="$CONTAINER_NAME"
+    --add-host="$CONTAINER_NAME":"127.0.0.1"
 
     # Settings for GUI applications (doc/gui-applications.md).
     --ipc=host
