@@ -67,7 +67,8 @@ RUN pip3 install \
     readchar \
     PyYaml \
     urdf-parser-py \
-    future
+    future \
+    pynput
 
 ####################################################################################
 ##- Set up REALTIME KERNEL, run these outside the docker!!!
