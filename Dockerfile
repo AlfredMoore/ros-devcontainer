@@ -63,7 +63,11 @@ ENV PATH="$CARGO_HOME/bin:${PATH}"
 # RUN chown -R $(whoami):$(whoami) $CARGO_HOME
 
 # Install ranged-IK dependencies
-RUN pip3 install readchar PyYaml
+RUN pip3 install \
+    readchar \
+    PyYaml \
+    urdf-parser-py \
+    future
 
 ####################################################################################
 ##- Set up REALTIME KERNEL, run these outside the docker!!!
